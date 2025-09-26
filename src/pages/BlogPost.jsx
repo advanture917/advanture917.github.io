@@ -11,8 +11,8 @@ const CustomImage = ({ src, alt }) => {
     return <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-md" />
   }
   
-  // 处理相对路径 - GitHub Pages需要仓库名作为基础路径
-  const basePath = '/page'
+  // 处理相对路径 - GitHub Pages个人站点使用根路径
+  const basePath = ''
   const processedSrc = src.startsWith('./') ? `${basePath}${src.slice(1)}` : `${basePath}/${src}`
   
   return <img src={processedSrc} alt={alt} className="max-w-full h-auto rounded-lg shadow-md" />

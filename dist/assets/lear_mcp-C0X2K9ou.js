@@ -153,11 +153,11 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
 在下面的模型服务中添加自己的平台及api-key\r
 \r
-![](/page/assets/images/image-10.png)\r
+![](/assets/images/image-10.png)\r
 \r
 进行mcp-server配置\r
 \r
-![](/page/assets/images/image-5.png)\r
+![](/assets/images/image-5.png)\r
 \r
 导入下面的json\r
 \r
@@ -186,13 +186,13 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
 在对话的设置中的助手设置开启模型的mcp服务\r
 \r
-![](/page/assets/images/image-8.png)\r
+![](/assets/images/image-8.png)\r
 \r
 # 3. 测试\r
 \r
-![](/page/assets/images/image-7.png)\r
+![](/assets/images/image-7.png)\r
 \r
-![](/page/assets/images/image-4.png)\r
+![](/assets/images/image-4.png)\r
 \r
 # 4. 编写mcp-server\r
 \r
@@ -266,19 +266,19 @@ dify在新版本中对Streamable HTTP通信增加了对响应的headers中Conten
 \r
 添加了请求体的类型仍有报错如下\r
 \r
-![](/page/assets/images/image-6.png)\r
+![](/assets/images/image-6.png)\r
 \r
 fastmcp的sdk导致的\r
 \r
-![](/page/assets/images/image-3.png)\r
+![](/assets/images/image-3.png)\r
 \r
 将url改为/mcp/\r
 \r
-![](/page/assets/images/image-2.png)\r
+![](/assets/images/image-2.png)\r
 \r
 进行测试\r
 \r
-![](/page/assets/images/image-1.png)\r
+![](/assets/images/image-1.png)\r
 \r
 > 新版本的dify 添加了对mcp的resource 和template的支持（未测试）\r
 \r
@@ -314,11 +314,11 @@ npx -y supergateway     --stdio "npx -y @modelcontextprotocol/server-filesystem 
 \r
 只需要根据需要更改引号内的mcp 服务即可\r
 \r
-![](/page/assets/images/image.png)\r
+![](/assets/images/image.png)\r
 \r
 sse的节点在\`http://localhost:8000/sse\`\r
 \r
 之后进行内网穿透即可\r
 \r
 `;export{r as default};
-//# sourceMappingURL=lear_mcp-n6PaV_iz.js.map
+//# sourceMappingURL=lear_mcp-C0X2K9ou.js.map

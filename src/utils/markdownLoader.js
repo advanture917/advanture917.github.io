@@ -21,8 +21,8 @@ function convertImagePaths(content) {
   return content.replace(imageRegex, (match, altText, imagePath) => {
     // 提取图片文件名
     const imageName = imagePath.split('/').pop()
-    // GitHub Pages需要仓库名作为基础路径
-    const basePath = '/page'
+    // GitHub Pages个人站点使用根路径
+    const basePath = ''
     return `![${altText}](${basePath}/assets/images/${imageName})`
   })
 }
