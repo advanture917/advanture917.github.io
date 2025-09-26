@@ -4,7 +4,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // 相对路径，适用于GitHub Pages
+  base: process.env.NODE_ENV === 'production' ? '/page/' : './', // GitHub Pages需要仓库名作为基础路径
   define: {
     global: 'globalThis',
   },

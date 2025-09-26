@@ -1,6 +1,6 @@
 const r=`---\r
 title: "MCP协议与应用实战：从Stdio到SSE与FastMCP实现"\r
-date: "2025-09-26"\r
+date: "2025-07-26"\r
 excerpt: "深入解析MCP（Model Context Protocol）的通信机制与应用场景，涵盖Stdio、SSE、Streamable-HTTP等传输方式，并展示如何基于FastMCP构建自定义MCP服务。"\r
 category: "AI 应用"\r
 tags: ["MCP", "通信协议", "Json-RPC", "FastMCP", "AI集成"]\r
@@ -129,7 +129,7 @@ HTTP+SSE 传输用于远程通信，客户端和服务器可能位于不同的�
 \r
 这里贴一个npm包，可以实现stdio和sse的互相转换\r
 \r
-[Supergateway可以通过一条命令在SSE（服务器端事件）或WebSockets（WS）上运行基于MCP stdio的服务器。这对于远程访问、调试或连接到仅支持stdio的MCP服务器上的客户端非常有用。](https://extrotec.feishu.cn/wiki/Jyz0wKSU2iJhkMkBYSHcNYbfn7e?larkTabName=space#share-UZymduJX7oHAIYxgF1tc3EMDngM)\r
+> Supergateway可以通过一条命令在SSE（服务器端事件）或WebSockets（WS）上运行基于MCP stdio的服务器。这对于远程访问、调试或连接到仅支持stdio的MCP服务器上的客户端非常有用。\r
 \r
 mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
@@ -153,11 +153,11 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
 在下面的模型服务中添加自己的平台及api-key\r
 \r
-![](../../assets/images/image-10.png)\r
+![](/page/assets/images/image-10.png)\r
 \r
 进行mcp-server配置\r
 \r
-![](../../assets/images/image-5.png)\r
+![](/page/assets/images/image-5.png)\r
 \r
 导入下面的json\r
 \r
@@ -186,13 +186,13 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
 在对话的设置中的助手设置开启模型的mcp服务\r
 \r
-![](../../assets/images/image-8.png)\r
+![](/page/assets/images/image-8.png)\r
 \r
 # 3. 测试\r
 \r
-![](../../assets/images/image-7.png)\r
+![](/page/assets/images/image-7.png)\r
 \r
-![](../../assets/images/image-4.png)\r
+![](/page/assets/images/image-4.png)\r
 \r
 # 4. 编写mcp-server\r
 \r
@@ -266,19 +266,19 @@ dify在新版本中对Streamable HTTP通信增加了对响应的headers中Conten
 \r
 添加了请求体的类型仍有报错如下\r
 \r
-![](../../assets/images/image-6.png)\r
+![](/page/assets/images/image-6.png)\r
 \r
 fastmcp的sdk导致的\r
 \r
-![](../../assets/images/image-3.png)\r
+![](/page/assets/images/image-3.png)\r
 \r
 将url改为/mcp/\r
 \r
-![](../../assets/images/image-2.png)\r
+![](/page/assets/images/image-2.png)\r
 \r
 进行测试\r
 \r
-![](../../assets/images/image-1.png)\r
+![](/page/assets/images/image-1.png)\r
 \r
 > 新版本的dify 添加了对mcp的resource 和template的支持（未测试）\r
 \r
@@ -314,11 +314,11 @@ npx -y supergateway     --stdio "npx -y @modelcontextprotocol/server-filesystem 
 \r
 只需要根据需要更改引号内的mcp 服务即可\r
 \r
-![](../../assets/images/image.png)\r
+![](/page/assets/images/image.png)\r
 \r
 sse的节点在\`http://localhost:8000/sse\`\r
 \r
 之后进行内网穿透即可\r
 \r
 `;export{r as default};
-//# sourceMappingURL=lear_mcp-DeBbsqMk.js.map
+//# sourceMappingURL=lear_mcp-n6PaV_iz.js.map

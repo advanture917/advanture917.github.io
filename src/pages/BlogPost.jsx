@@ -3,6 +3,20 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
+// 自定义图片组件来处理GitHub Pages路径
+const CustomImage = ({ src, alt }) => {
+  // 如果已经是绝对路径或者是外部链接，直接使用
+  if (src.startsWith('http') || src.startsWith('/')) {
+    return <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-md" />
+  }
+  
+  // 处理相对路径 - GitHub Pages需要仓库名作为基础路径
+  const basePath = '/page'
+  const processedSrc = src.startsWith('./') ? `${basePath}${src.slice(1)}` : `${basePath}/${src}`
+  
+  return <img src={processedSrc} alt={alt} className="max-w-full h-auto rounded-lg shadow-md" />
+}
 import { useBlogStore } from '../store/blogStore'
 import { 
   Calendar, 
@@ -207,7 +221,12 @@ const BlogPost = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="prose prose-lg dark:prose-invert max-w-none"
           >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={{
+                img: CustomImage
+              }}
+            >
               {post.content}
             </ReactMarkdown>
           </motion.div>

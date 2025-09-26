@@ -13,6 +13,20 @@ const markdownFiles = import.meta.glob('/src/posts/*.md', {
   eager: false
 })
 
+// 转换Markdown中的图片路径以适应GitHub Pages
+function convertImagePaths(content) {
+  // 匹配Markdown图片语法 ![alt text](../../assets/images/image.png)
+  const imageRegex = /!\[([^\]]*)\]\((\.\.\/\.\.\/assets\/images\/[^)]+)\)/g
+  
+  return content.replace(imageRegex, (match, altText, imagePath) => {
+    // 提取图片文件名
+    const imageName = imagePath.split('/').pop()
+    // GitHub Pages需要仓库名作为基础路径
+    const basePath = '/page'
+    return `![${altText}](${basePath}/assets/images/${imageName})`
+  })
+}
+
 // 读取Markdown文件并解析front matter
 export async function loadMarkdownPost(slug) {
   try {
@@ -33,10 +47,13 @@ export async function loadMarkdownPost(slug) {
     const { data: frontMatter, content } = matter(markdownContent)
     console.log(`解析front matter成功:`, frontMatter)
     
+    // 转换图片路径以适应GitHub Pages
+    const processedContent = convertImagePaths(content)
+    
     // 返回解析后的数据
     return {
       ...frontMatter,
-      content,
+      content: processedContent,
       slug
     }
   } catch (error) {

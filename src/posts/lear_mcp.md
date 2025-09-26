@@ -153,11 +153,11 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http
 
 在下面的模型服务中添加自己的平台及api-key
 
-![](../../assets/images/image-10.png)
+![](/page/assets/images/image-10.png)
 
 进行mcp-server配置
 
-![](../../assets/images/image-5.png)
+![](/page/assets/images/image-5.png)
 
 导入下面的json
 
@@ -186,13 +186,13 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http
 
 在对话的设置中的助手设置开启模型的mcp服务
 
-![](../../assets/images/image-8.png)
+![](/page/assets/images/image-8.png)
 
 # 3. 测试
 
-![](../../assets/images/image-7.png)
+![](/page/assets/images/image-7.png)
 
-![](../../assets/images/image-4.png)
+![](/page/assets/images/image-4.png)
 
 # 4. 编写mcp-server
 
@@ -266,19 +266,19 @@ dify在新版本中对Streamable HTTP通信增加了对响应的headers中Conten
 
 添加了请求体的类型仍有报错如下
 
-![](../../assets/images/image-6.png)
+![](/page/assets/images/image-6.png)
 
 fastmcp的sdk导致的
 
-![](../../assets/images/image-3.png)
+![](/page/assets/images/image-3.png)
 
 将url改为/mcp/
 
-![](../../assets/images/image-2.png)
+![](/page/assets/images/image-2.png)
 
 进行测试
 
-![](../../assets/images/image-1.png)
+![](/page/assets/images/image-1.png)
 
 > 新版本的dify 添加了对mcp的resource 和template的支持（未测试）
 
@@ -314,7 +314,7 @@ npx -y supergateway     --stdio "npx -y @modelcontextprotocol/server-filesystem 
 
 只需要根据需要更改引号内的mcp 服务即可
 
-![](../../assets/images/image.png)
+![](/page/assets/images/image.png)
 
 sse的节点在`http://localhost:8000/sse`
 
