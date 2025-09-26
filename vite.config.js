@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/page/', // GitHub Pages 仓库名称
+  base: './', // 相对路径，适用于GitHub Pages
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
