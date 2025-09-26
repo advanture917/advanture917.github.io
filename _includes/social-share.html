@@ -1,0 +1,199 @@
+<!-- Social Share Component -->
+{% if include.post %}
+  {% assign post = include.post %}
+{% else %}
+  {% assign post = page %}
+{% endif %}
+
+{% assign share_url = post.url | absolute_url | url_encode %}
+{% assign share_title = post.title | url_encode %}
+{% assign share_text = post.excerpt | strip_html | truncate: 200 | url_encode %}
+
+<div class="social-share">
+  <h4 class="share-title">Share this post</h4>
+  <div class="share-buttons">
+    <a href="https://twitter.com/intent/tweet?text={{ share_title }}&url={{ share_url }}&via={{ site.twitter_username }}" 
+       class="share-btn twitter" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Share on Twitter">
+      <i class="fab fa-twitter"></i>
+      <span>Twitter</span>
+    </a>
+    
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" 
+       class="share-btn facebook" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Share on Facebook">
+      <i class="fab fa-facebook-f"></i>
+      <span>Facebook</span>
+    </a>
+    
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" 
+       class="share-btn linkedin" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Share on LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+      <span>LinkedIn</span>
+    </a>
+    
+    <a href="https://reddit.com/submit?url={{ share_url }}&title={{ share_title }}" 
+       class="share-btn reddit" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Share on Reddit">
+      <i class="fab fa-reddit-alien"></i>
+      <span>Reddit</span>
+    </a>
+    
+    <button class="share-btn copy" 
+            onclick="copyToClipboard('{{ post.url | absolute_url }}')" 
+            aria-label="Copy link">
+      <i class="fas fa-link"></i>
+      <span>Copy Link</span>
+    </button>
+  </div>
+</div>
+
+<style>
+.social-share {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.share-title {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.share-btn.twitter:hover {
+  background: #1da1f2;
+  color: white;
+  border-color: #1da1f2;
+}
+
+.share-btn.facebook:hover {
+  background: #4267B2;
+  color: white;
+  border-color: #4267B2;
+}
+
+.share-btn.linkedin:hover {
+  background: #0e76a8;
+  color: white;
+  border-color: #0e76a8;
+}
+
+.share-btn.reddit:hover {
+  background: #ff4500;
+  color: white;
+  border-color: #ff4500;
+}
+
+.share-btn.copy:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.share-btn.copied {
+  background: var(--success-color) !important;
+  color: white !important;
+  border-color: var(--success-color) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .share-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    gap: 0.5rem;
+  }
+  
+  .share-btn {
+    justify-content: center;
+    padding: 0.75rem 0.5rem;
+  }
+}
+</style>
+
+<script>
+function copyToClipboard(url) {
+  const button = event.target.closest('.share-btn');
+  const originalContent = button.innerHTML;
+  
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url).then(() => {
+      button.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+      button.classList.add('copied');
+      
+      setTimeout(() => {
+        button.innerHTML = originalContent;
+        button.classList.remove('copied');
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  } else {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = url;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      button.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+      button.classList.add('copied');
+      
+      setTimeout(() => {
+        button.innerHTML = originalContent;
+        button.classList.remove('copied');
+      }, 2000);
+    } catch (err) {
+      console.error('Fallback: Failed to copy', err);
+    }
+    
+    document.body.removeChild(textArea);
+  }
+}
+</script>
