@@ -37,3 +37,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist
         force_orphan: true
+        cname: '' # 清空CNAME避免缓存问题
