@@ -51,3 +51,20 @@ npm run deploy     # 部署到GitHub Pages
 - 所有资源路径已配置为相对路径，确保在GitHub Pages上正确加载
 - 构建输出目录为 `dist/`
 - 已配置GitHub Actions自动部署工作流
+
+## 🔧 故障排除
+
+### 权限错误（403）
+如果遇到权限错误，请检查：
+1. 确保仓库 Settings > Actions > General > Workflow permissions 设置为 "Read and write permissions"
+2. 检查工作流文件中的权限配置是否正确
+
+### 部署失败
+1. 检查构建日志中的错误信息
+2. 确保package.json中的构建脚本正确
+3. 验证dist目录是否正确生成
+
+### 页面空白或资源加载失败
+1. 检查vite.config.js中的base路径配置
+2. 确认所有资源路径使用相对路径
+3. 检查浏览器控制台中的错误信息

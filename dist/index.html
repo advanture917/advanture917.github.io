@@ -14,5 +14,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // SPA路由处理：处理GitHub Pages的404重定向
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </body>
 </html>

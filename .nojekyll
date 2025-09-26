@@ -1,0 +1,8 @@
+# GitHub Pages 配置
+# 这个文件确保GitHub Pages正确处理SPA路由
+
+# 禁用Jekyll处理
+jekyll: false
+
+# 设置时区
+timezone: Asia/Shanghai
