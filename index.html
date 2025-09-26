@@ -1,0 +1,41 @@
+---
+layout: default
+title: Home
+---
+
+<div class="home">
+  <h1 class="page-heading">Welcome to My Blog</h1>
+
+  <p>This is a personal blog built with Jekyll and hosted on GitHub Pages. Here you'll find articles about technology, programming, and life experiences.</p>
+
+  <h2 class="post-list-heading">Recent Posts</h2>
+  
+  {%- if site.posts.size > 0 -%}
+    <ul class="post-list">
+      {%- for post in site.posts limit:5 -%}
+      <li>
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        {%- if site.show_excerpts -%}
+          {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+  {%- else -%}
+    <p>No posts yet. Check back soon!</p>
+  {%- endif -%}
+
+  <div class="featured-section">
+    <h2>About This Site</h2>
+    <p>This blog is powered by Jekyll and hosted on GitHub Pages. It features a clean, responsive design that works great on all devices. Feel free to explore the content and <a href="/about/">learn more about me</a>.</p>
+  </div>
+
+</div>
