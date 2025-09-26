@@ -1,219 +1,223 @@
-# My GitHub Pages Blog
+# 现代化SPA博客
 
-A modern, responsive blog built with Jekyll and hosted on GitHub Pages.
+基于React 18 + Vite + TailwindCSS构建的现代化单页应用博客，支持Markdown文章渲染、响应式设计和深色模式。
 
-## Features
+## 🚀 特性
 
-- 📱 **Responsive Design** - Works perfectly on all devices
-- 🎨 **Modern UI** - Clean and professional appearance
-- 📝 **Markdown Support** - Write posts in Markdown
-- 🔍 **Search Functionality** - Find content easily
-- 🌙 **Theme Support** - Light and dark modes
-- ⚡ **Fast Loading** - Optimized for performance
-- 📊 **SEO Optimized** - Built-in SEO best practices
+- **现代化UI设计**：简洁美观的界面，支持深色/浅色模式切换
+- **响应式布局**：完美适配移动端、平板和桌面设备
+- **Markdown支持**：原生渲染Markdown格式的技术文章
+- **搜索功能**：支持关键词、分类、标签多维度搜索
+- **动画效果**：使用Framer Motion实现流畅的页面过渡和交互动画
+- **性能优化**：基于Vite构建，开发体验流畅，生产构建优化
+- **SEO友好**：支持服务端渲染配置，有利于搜索引擎优化
 
-## Quick Start
+## 📁 项目结构
 
-### Prerequisites
-
-- Ruby 2.7 or higher
-- Bundler gem
-- Git
-
-### Local Development
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/your-blog-repo.git
-   cd your-blog-repo
-   ```
-
-2. **Install dependencies**
-   ```bash
-   bundle install
-   ```
-
-3. **Run locally**
-   ```bash
-   bundle exec jekyll serve
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:4000`
-
-### Writing Posts
-
-Create new posts in the `_posts` directory with the filename format:
 ```
-YYYY-MM-DD-title-of-post.markdown
+page/
+├── public/                 # 静态资源
+├── src/
+│   ├── components/         # 可复用组件
+│   │   ├── ArticleCard.jsx # 文章卡片组件
+│   │   ├── Header.jsx      # 头部导航组件
+│   │   ├── Footer.jsx      # 页脚组件
+│   │   ├── TagCloud.jsx    # 标签云组件
+│   │   └── Layout.jsx      # 主布局组件
+│   ├── pages/              # 页面组件
+│   │   ├── Home.jsx        # 首页
+│   │   ├── BlogPost.jsx    # 文章详情页
+│   │   ├── Archive.jsx     # 文章归档页
+│   │   ├── Search.jsx      # 搜索页面
+│   │   └── About.jsx       # 关于页面
+│   ├── store/              # 状态管理
+│   │   ├── blogStore.js    # 博客数据状态
+│   │   └── themeStore.js   # 主题状态管理
+│   ├── App.jsx             # 主应用组件
+│   ├── main.jsx            # 应用入口
+│   └── index.css           # 全局样式
+├── _posts/                 # 原始Markdown文章（迁移用）
+├── package.json            # 项目依赖配置
+├── vite.config.js          # Vite配置
+├── tailwind.config.js      # TailwindCSS配置
+└── README.md              # 项目说明
 ```
 
-Example post structure:
-```markdown
----
-layout: post
-title: "Your Post Title"
-date: 2024-01-15 10:00:00 +0000
-categories: [category1, category2]
-tags: [tag1, tag2, tag3]
-author: Your Name
----
+## 🛠️ 技术栈
 
-Your post content here...
-```
+- **前端框架**: React 18
+- **构建工具**: Vite 5
+- **路由管理**: React Router v6
+- **状态管理**: Zustand
+- **样式框架**: TailwindCSS
+- **动画库**: Framer Motion
+- **Markdown渲染**: react-markdown
+- **图标库**: Lucide React
 
-## Customization
+## 📦 安装和运行
 
-### Site Configuration
-
-Edit `_config.yml` to customize:
-- Site title and description
-- Author information
-- Social media links
-- Build settings
-
-### Styling
-
-- **Colors**: Modify CSS variables in `assets/css/main.css`
-- **Fonts**: Update font families in the CSS file
-- **Layout**: Adjust layouts in the `_layouts` directory
-
-### Adding Pages
-
-Create new pages by adding files in the root directory:
-```markdown
----
-layout: page
-title: Your Page Title
-permalink: /your-page/
----
-
-Page content here...
-```
-
-## Deployment
-
-### GitHub Pages
-
-1. **Enable GitHub Pages**
-   - Go to repository Settings
-   - Scroll to Pages section
-   - Select source branch (usually `main`)
-
-2. **Custom Domain** (optional)
-   - Add `CNAME` file with your domain
-   - Configure DNS settings
-
-### Manual Deployment
+### 1. 安装依赖
 
 ```bash
-# Build the site
-bundle exec jekyll build
-
-# Deploy _site directory to your hosting
+npm install
 ```
 
-## Directory Structure
+### 2. 开发模式运行
 
-```
-├── _config.yml           # Jekyll configuration
-├── _layouts/              # Page layouts
-│   ├── default.html
-│   ├── page.html
-│   └── post.html
-├── _includes/             # Reusable components
-│   ├── head.html
-│   ├── header.html
-│   ├── footer.html
-│   └── social.html
-├── _posts/                # Blog posts
-│   ├── 2024-01-15-welcome.markdown
-│   └── ...
-├── assets/                # Static assets
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── about.markdown         # About page
-├── index.html            # Homepage
-├── Gemfile               # Ruby dependencies
-└── README.md             # This file
+```bash
+npm run dev
 ```
 
-## Advanced Features
+访问 `http://localhost:3000` 查看应用
 
-### Search
+### 3. 构建生产版本
 
-The blog includes client-side search functionality. To enable:
-1. Add search input to your layout
-2. Include the search JavaScript
-3. Customize search results styling
-
-### Analytics
-
-Add Google Analytics by including your tracking ID in `_config.yml`:
-```yaml
-google_analytics: UA-XXXXXXXX-X
+```bash
+npm run build
 ```
 
-### Comments
+构建产物将输出到 `dist/` 目录
 
-Enable Disqus comments by adding to `_config.yml`:
-```yaml
-disqus:
-  shortname: your-disqus-shortname
+### 4. 预览构建结果
+
+```bash
+npm run preview
 ```
 
-### Social Sharing
+## 📝 内容迁移指南
 
-Social sharing buttons can be added to post layouts using the included social media links.
+### 从Jekyll迁移Markdown文章
 
-## Performance Optimization
+1. **复制文章文件**：将 `_posts/` 目录下的所有 `.markdown` 文件保留
 
-- **Image Optimization**: Compress images before uploading
-- **Lazy Loading**: Implemented for images
-- **Minification**: CSS and JS are optimized
-- **Caching**: Leverages browser and CDN caching
+2. **更新文章数据**：在 `src/store/blogStore.js` 中更新文章数据：
 
-## SEO Features
+```javascript
+const blogPosts = [
+  {
+    slug: '文章URL别名',
+    title: '文章标题',
+    date: '2024-01-15',
+    excerpt: '文章摘要',
+    content: '完整的Markdown内容',
+    tags: ['标签1', '标签2'],
+    category: '技术分类',
+    author: '作者名',
+    readingTime: '5分钟阅读',
+    image: '/assets/images/post-image.jpg' // 可选
+  },
+  // 更多文章...
+]
+```
 
-- Structured data markup
-- Open Graph tags
-- Twitter Card support
-- Sitemap generation
-- RSS feed
+3. **处理图片资源**：将文章中的图片复制到 `public/assets/images/` 目录
 
-## Browser Support
+4. **更新文章链接**：确保文章中的内部链接使用新的路由格式
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
+### 文章格式要求
 
-## Contributing
+- 使用标准Markdown语法
+- 支持代码块高亮
+- 支持图片、链接、列表等常用元素
+- 建议添加文章摘要和标签便于搜索
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test locally
-5. Submit a pull request
+## 🚀 部署指南
 
-## License
+### 部署到GitHub Pages
 
-This project is open source and available under the [MIT License](LICENSE).
+1. **构建项目**：
 
-## Support
+```bash
+npm run build
+```
 
-- 📚 [Jekyll Documentation](https://jekyllrb.com/docs/)
-- 🌐 [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- 💬 [GitHub Issues](https://github.com/yourusername/your-blog-repo/issues)
+2. **配置GitHub Pages**：
+   - 在GitHub仓库设置中启用GitHub Pages
+   - 选择 `gh-pages` 分支作为源
 
-## Acknowledgments
+3. **自动部署**（推荐）：
+   - 在 `.github/workflows/` 目录创建部署工作流
+   - 或使用现有的GitHub Actions配置
 
-- Built with [Jekyll](https://jekyllrb.com/)
-- Hosted on [GitHub Pages](https://pages.github.com/)
-- Inspired by modern web design principles
+4. **手动部署**：
+   - 将 `dist/` 目录内容推送到 `gh-pages` 分支
+
+### 部署到其他平台
+
+- **Netlify**: 直接连接GitHub仓库，自动构建部署
+- **Vercel**: 支持自动部署，提供全球CDN加速
+- **阿里云OSS**: 上传静态文件到对象存储服务
+- **腾讯云COS**: 类似阿里云的对象存储方案
+
+## 🎨 自定义配置
+
+### 修改主题颜色
+
+编辑 `tailwind.config.js` 文件中的颜色配置：
+
+```javascript
+colors: {
+  primary: {
+    50: '#eff6ff',
+    500: '#3b82f6',  // 主色调
+    600: '#2563eb',  // 悬停色
+    900: '#1e3a8a',
+  }
+}
+```
+
+### 修改字体
+
+在 `index.html` 中更新Google Fonts链接，或在 `tailwind.config.js` 中配置字体：
+
+```javascript
+fontFamily: {
+  sans: ['Inter', 'system-ui', 'sans-serif'],
+  mono: ['Fira Code', 'monospace'],
+}
+```
+
+### 添加新页面
+
+1. 在 `src/pages/` 目录创建新页面组件
+2. 在 `src/App.jsx` 中添加路由配置
+3. 在导航组件中添加对应链接
+
+## 🔧 开发建议
+
+### 代码规范
+
+- 使用ESLint进行代码检查
+- 遵循React Hooks最佳实践
+- 组件命名使用PascalCase
+- 文件命名使用camelCase
+
+### 性能优化
+
+- 使用React.memo优化组件渲染
+- 合理使用useMemo和useCallback
+- 图片资源进行压缩优化
+- 启用代码分割和懒加载
+
+### SEO优化
+
+- 配置meta标签和OpenGraph
+- 添加结构化数据(JSON-LD)
+- 优化页面加载速度
+- 生成sitemap.xml
+
+## 📞 支持
+
+如有问题或建议，欢迎通过以下方式联系：
+
+- 提交GitHub Issue
+- 发送邮件到: contact@example.com
+- 关注技术博客获取更新
+
+## 📄 许可证
+
+MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-**Happy blogging!** 🎉
+**享受你的现代化博客之旅！** 🎉
