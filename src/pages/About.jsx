@@ -11,7 +11,8 @@ import {
   Briefcase,
   MapPin,
   Calendar,
-  User
+  User,
+  BookOpen as BookMarked
 } from 'lucide-react'
 
 const About = () => {
@@ -39,10 +40,10 @@ const About = () => {
   ]
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, href: '#', label: 'GitHub' },
-    { icon: <Twitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
+    { icon: <Github className="w-5 h-5" />, href: 'https://github.com/advanture917', label: 'GitHub' },
+    { icon: <Twitter className="w-5 h-5" />, href: 'https://x.com/adventure_917', label: 'Twitter' },
     { icon: <Linkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
-    { icon: <Mail className="w-5 h-5" />, href: '#', label: 'Email' }
+    { icon: <Mail className="w-5 h-5" />, href: 'mailto:2829777585@qq.com', label: 'Email' }
   ]
 
   return (
@@ -330,7 +331,7 @@ const About = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:contact@example.com"
+                href="mailto:2829777585@qq.com"
                 className="inline-flex items-center justify-center px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
               >
                 <Mail className="w-5 h-5 mr-2" />
@@ -338,7 +339,7 @@ const About = () => {
               </a>
               
               <a
-                href="https://github.com"
+                href="https://github.com/advanture917"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-3 bg-white/20 backdrop-blur-sm text-white rounded-lg font-semibold hover:bg-white/30 transition-colors duration-200"

@@ -30,12 +30,16 @@ const BlogPost = () => {
   }, [])
 
   useEffect(() => {
-    const foundPost = getPostBySlug(slug)
-    if (foundPost) {
-      setPost(foundPost)
-      setRelatedPosts(getRelatedPosts(foundPost))
-      window.scrollTo(0, 0)
+    const loadPost = async () => {
+      const foundPost = await getPostBySlug(slug)
+      if (foundPost) {
+        setPost(foundPost)
+        setRelatedPosts(getRelatedPosts(foundPost))
+        window.scrollTo(0, 0)
+      }
     }
+    
+    loadPost()
   }, [slug, posts])
 
   useEffect(() => {

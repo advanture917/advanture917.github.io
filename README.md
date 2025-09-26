@@ -229,7 +229,7 @@ fontFamily: {
 如有问题或建议，欢迎通过以下方式联系：
 
 - 提交GitHub Issue
-- 发送邮件到: contact@example.com
+- 发送邮件到: 2829777585@qq.com
 - 关注技术博客获取更新
 
 ## 📄 许可证

@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { getAllPostsMeta, loadMarkdownPost } from '../utils/markdownLoader'
 
-// 博客文章数据
-const blogPosts = [
+// 默认的博客文章数据（作为后备）
+const defaultBlogPosts = [
   {
     slug: 'responsive-design-guide',
     title: '响应式设计完全指南：从移动优先到现代CSS布局',
@@ -11,7 +12,7 @@ const blogPosts = [
     content: '响应式设计是一种网页设计方法，旨在创建能够自动适应不同设备屏幕尺寸和分辨率的网站。无论用户使用手机、平板还是桌面设备访问，网站都能提供最佳的浏览体验。',
     category: '前端开发',
     tags: ['响应式设计', 'CSS', '移动优先', '布局', '前端'],
-    author: 'Sky Patrol',
+    author: 'adventure',
     readingTime: '8分钟'
   },
   {
@@ -22,68 +23,36 @@ const blogPosts = [
     content: 'JavaScript是单线程语言，异步编程对于处理耗时操作（如网络请求、文件读写）至关重要。从回调函数到Promise，再到Async/Await，JavaScript异步编程不断演进。',
     category: '前端开发',
     tags: ['JavaScript', '异步编程', 'Promise', 'Async/Await', '回调'],
-    author: 'Sky Patrol',
+    author: 'adventure',
     readingTime: '10分钟'
   },
   {
     slug: 'react-performance-optimization',
     title: 'React性能优化实战指南：从理论到实践',
-    date: '2024-01-18',
-    excerpt: '深入探讨React应用的性能优化策略，包括组件优化、状态管理、代码分割等实用技巧。',
-    content: '随着React应用规模的增长，性能问题逐渐成为用户体验的关键因素。通过组件优化、状态管理优化和代码分割等技术，可以显著提升应用性能。',
-    category: '前端开发',
-    tags: ['React', '性能优化', '组件优化', '状态管理', '代码分割'],
-    author: 'Sky Patrol',
-    readingTime: '12分钟'
-  },
-  {
-    slug: 'web-security-best-practices',
-    title: 'Web安全防护指南：从XSS到CSRF的全面防御',
     date: '2024-01-15',
-    excerpt: '系统介绍Web应用面临的安全威胁及相应的防护措施，帮助开发者构建更安全的应用。',
-    content: 'Web应用面临多种安全威胁，包括XSS、CSRF、SQL注入等。通过输入验证、输出编码、使用安全令牌等措施，可以有效防护这些攻击。',
+    excerpt: '深入探讨React应用性能优化的各种策略和技巧，包括组件优化、状态管理、代码分割等实用方法。',
+    content: 'React作为现代前端开发的主流框架，性能优化是构建高质量应用的关键。本文将从组件层面到应用层面，全面介绍React性能优化的最佳实践。',
     category: '前端开发',
-    tags: ['Web安全', 'XSS', 'CSRF', 'SQL注入', '安全防护'],
-    author: 'Sky Patrol',
-    readingTime: '15分钟'
-  },
-  {
-    slug: 'nodejs-backend-development',
-    title: 'Node.js后端开发实践：从API设计到数据库优化',
-    date: '2024-01-12',
-    excerpt: '分享Node.js后端开发的实战经验，包括RESTful API设计、数据库优化、错误处理等核心内容。',
-    content: 'Node.js后端开发需要关注API设计、数据库优化、错误处理等多个方面。通过合理的设计和优化，可以构建高性能、可维护的后端应用。',
-    category: '后端开发',
-    tags: ['Node.js', '后端开发', 'API设计', '数据库优化', '错误处理'],
-    author: 'Sky Patrol',
-    readingTime: '11分钟'
-  },
-  {
-    slug: 'python-data-analysis',
-    title: 'Python数据分析实战：从数据清洗到可视化',
-    date: '2024-01-10',
-    excerpt: '使用Python进行数据分析的完整流程，包括数据获取、清洗、分析和可视化等关键步骤。',
-    content: 'Python数据分析包括数据获取、清洗、分析和可视化等步骤。通过pandas、numpy、matplotlib等工具，可以高效地完成数据分析任务。',
-    category: '数据科学',
-    tags: ['Python', '数据分析', 'pandas', '可视化', '数据清洗'],
-    author: 'Sky Patrol',
-    readingTime: '9分钟'
+    tags: ['React', '性能优化', '前端', '组件', '状态管理'],
+    author: 'adventure',
+    readingTime: '12分钟'
   }
 ]
 
 // 初始状态
 const initialState = {
-  posts: blogPosts,
-  filteredPosts: blogPosts,
-  categories: ['前端开发', '后端开发', '数据科学'],
-  tags: ['响应式设计', 'CSS', 'JavaScript', 'React', 'Node.js', 'Python', '数据分析'],
-  selectedCategory: '',
-  selectedTags: [],
-  searchQuery: '',
-  viewMode: 'grid',
-  loading: false,
-  currentPost: null,
-  relatedPosts: []
+  posts: [], // 文章列表
+  filteredPosts: [], // 筛选后的文章列表
+  categories: [], // 分类列表
+  tags: [], // 标签列表
+  selectedCategory: '', // 选中的分类
+  selectedTags: [], // 选中的标签
+  searchQuery: '', // 搜索查询
+  viewMode: 'grid', // 视图模式
+  loading: false, // 加载状态
+  currentPost: null, // 当前文章
+  relatedPosts: [], // 相关文章
+  isMarkdownLoaded: false // 是否已加载Markdown文件
 }
 
 // 创建 store
@@ -94,8 +63,46 @@ export const useBlogStore = create(
 
       // 初始化文章数据
       initializePosts: async () => {
+        console.log('开始初始化文章数据...')
         set({ loading: true })
-        await new Promise(resolve => setTimeout(resolve, 1000))
+        
+        try {
+          // 尝试从Markdown文件加载文章
+          console.log('尝试从Markdown文件加载文章...')
+          const markdownPosts = await getAllPostsMeta()
+          
+          console.log(`从Markdown加载到 ${markdownPosts.length} 篇文章`)
+          
+          if (markdownPosts.length > 0) {
+            // 成功加载Markdown文件，使用这些数据
+            console.log('成功加载Markdown文件，使用这些数据')
+            const categories = [...new Set(markdownPosts.map(post => post.category))]
+            const allTags = [...new Set(markdownPosts.flatMap(post => post.tags || []))]
+            
+            set({ 
+              posts: markdownPosts,
+              filteredPosts: markdownPosts,
+              categories,
+              tags: allTags,
+              isMarkdownLoaded: true
+            })
+            console.log('文章数据初始化完成')
+          } else {
+            // Markdown文件加载失败，使用默认数据
+            console.log('Markdown文件加载失败，使用默认数据')
+            set({ 
+              posts: defaultBlogPosts,
+              filteredPosts: defaultBlogPosts,
+              categories: ['前端开发', '后端开发', '数据科学'],
+              tags: ['响应式设计', 'CSS', 'JavaScript', 'React', 'Node.js', 'Python', '数据分析'],
+              isMarkdownLoaded: false
+            })
+          }
+        } catch (error) {
+          console.error('初始化文章数据失败:', error)
+          // 出错时也使用默认数据
+        }
+        
         set({ loading: false })
       },
 
@@ -151,10 +158,29 @@ export const useBlogStore = create(
       },
 
       // 根据slug获取文章
-      getPostBySlug: (slug) => {
-        const post = get().posts.find(p => p.slug === slug)
+      getPostBySlug: async (slug) => {
+        const { posts, isMarkdownLoaded } = get()
+        
+        // 首先尝试从已加载的文章列表中找到文章基本信息
+        let post = posts.find(p => p.slug === slug)
+        
+        // 如果找到了文章且是从Markdown加载的，尝试加载完整的Markdown内容
+        if (post && isMarkdownLoaded) {
+          try {
+            const markdownPost = await loadMarkdownPost(slug)
+            if (markdownPost) {
+              post = {
+                ...post,
+                content: markdownPost.content
+              }
+            }
+          } catch (error) {
+            console.error(`加载Markdown内容失败 (${slug}):`, error)
+          }
+        }
+        
         if (post) {
-          const relatedPosts = get().posts
+          const relatedPosts = posts
             .filter(p => p.category === post.category && p.slug !== slug)
             .slice(0, 3)
           
@@ -163,6 +189,7 @@ export const useBlogStore = create(
             relatedPosts 
           })
         }
+        
         return post
       },
 

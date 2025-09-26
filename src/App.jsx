@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useThemeStore } from './store/themeStore'
 import Layout from './components/Layout'
@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 
 function App() {
   const { theme, initializeTheme } = useThemeStore()
+  const location = useLocation()
 
   useEffect(() => {
     initializeTheme()
@@ -19,6 +20,11 @@ function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
+
+  // 路由变化时滚动到页面顶部
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location])
 
   return (
     <Layout>

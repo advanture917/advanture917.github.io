@@ -39,7 +39,7 @@ const Header = () => {
               <span className="text-white font-bold text-sm">B</span>
             </div>
             <span className="text-xl font-bold text-gray-900 dark:text-white hidden sm:block">
-              技术博客
+              Blog
             </span>
           </Link>
 

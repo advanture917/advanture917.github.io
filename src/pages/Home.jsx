@@ -38,7 +38,7 @@ const Home = () => {
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white">
                 <span className="text-gradient">Loyal Heart</span>
                 <br />
-                <span className="text-gray-700 dark:text-gray-300">of the Sky Patrol</span>
+                <span className="text-gray-700 dark:text-gray-300">Over the Sky</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
                 分享编程技术、金融理财和生活感悟的个人博客。
@@ -175,13 +175,13 @@ const Home = () => {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">关于博主</h2>
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold">
-                S
+                A
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Sky Patrol</h3>
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">adventure</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  全栈开发工程师，专注于现代Web技术栈和金融理财领域，
-                  热爱分享技术见解、投资经验和人生感悟。
+                  大四在读学生，专注于 大模型应用与分布式训练，
+                  怀揣对 Web3 的热情，乐于分享学习体会与探索感悟。
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   拥有丰富的全栈开发经验，熟悉React、Python、数据分析等技术，
@@ -189,16 +189,7 @@ const Home = () => {
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                   <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
-                    React
-                  </span>
-                  <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">
-                    Python
-                  </span>
-                  <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm">
-                    金融分析
-                  </span>
-                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">
-                    投资策略
+                    Vibe Coding
                   </span>
                 </div>
               </div>

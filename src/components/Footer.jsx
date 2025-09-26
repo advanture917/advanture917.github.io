@@ -8,19 +8,19 @@ const Footer = () => {
     {
       name: 'GitHub',
       icon: Github,
-      href: 'https://github.com/yourusername',
+      href: 'https://github.com/advanture917',
       color: 'hover:text-gray-900 dark:hover:text-white'
     },
     {
       name: 'Twitter',
       icon: Twitter,
-      href: 'https://twitter.com/yourusername',
+      href: 'https://x.com/adventure_917',
       color: 'hover:text-blue-500'
     },
     {
       name: 'Email',
       icon: Mail,
-      href: 'mailto:your.email@example.com',
+      href: 'mailto:2829777585@qq.com',
       color: 'hover:text-red-500'
     },
     {
@@ -47,15 +47,15 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">B</span>
+                <span className="text-white font-bold text-sm">A</span>
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                技术博客
+                赤心巡天 | Loyal Heart Over the Sky
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              专注于前端开发、JavaScript技术和响应式设计的个人技术博客。
-              分享编程经验，记录学习历程。
+              专注于 人工智能应用 与 Web3探索 的个人技术博客。
+              记录学习与实践的足迹，一颗赤心，以巡天，分享技术见解与成长感悟。
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((link) => {
