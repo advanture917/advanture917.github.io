@@ -16,10 +16,34 @@
     <script>
       // SPA路由处理：处理GitHub Pages的404重定向
       (function(){
+        // 处理从404页面重定向回来的情况
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
         if (redirect && redirect != location.href) {
           history.replaceState(null, null, redirect);
+        }
+        
+        // 处理直接访问深层路由的情况
+        // 如果当前路径不是根路径，且没有重定向标记，说明是直接访问深层路由
+        // 此时需要检查页面是否存在，如果不存在则重定向到首页
+        if (location.pathname !== '/' && !sessionStorage.redirectedFrom404) {
+          // 检查当前路径是否有效（这里可以添加更复杂的逻辑）
+          // 简单起见，我们假设所有非根路径都需要检查
+          sessionStorage.redirectedFrom404 = true;
+          
+          // 保存当前路径，然后重定向到首页
+          sessionStorage.originalPath = location.pathname + location.search + location.hash;
+          location.replace('/');
+        }
+        
+        // 如果是从404重定向回来的，恢复原始路径
+        if (sessionStorage.originalPath && location.pathname === '/') {
+          var originalPath = sessionStorage.originalPath;
+          delete sessionStorage.originalPath;
+          delete sessionStorage.redirectedFrom404;
+          
+          // 使用replaceState来更新URL而不刷新页面
+          history.replaceState(null, null, originalPath);
         }
       })();
     </script>

@@ -15,13 +15,13 @@ tags: [测试, 图片]\r
 \r
 测试相对路径图片：\r
 \r
-![测试图片1](../../assets/images/image-7.png)\r
+![测试图片1](/images/image-7.png)\r
 \r
 测试另一个图片：\r
 \r
-![测试图片2](../../assets/images/image-1.png)\r
+![测试图片2](/images/image-1.png)\r
 \r
 ## 说明\r
 \r
 如果图片能够正常显示，说明路径转换功能正常工作。`;export{r as default};
-//# sourceMappingURL=test-images-DoQUavOG.js.map
+//# sourceMappingURL=test-images-B2Gf-ugu.js.map

@@ -15,11 +15,11 @@ tags: [测试, 图片]
 
 测试相对路径图片：
 
-![测试图片1](../../assets/images/image-7.png)
+![测试图片1](/images/image-7.png)
 
 测试另一个图片：
 
-![测试图片2](../../assets/images/image-1.png)
+![测试图片2](/images/image-1.png)
 
 ## 说明
 

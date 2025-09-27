@@ -16,13 +16,13 @@ slug: "mcp-protocol-guide"
 MCP（Model Context Protocol）是一个协议规范，是对模型、client、server 三者之间如何通信的统一协议
 
 如果没有类似 MCP 的协议，我们将需要创建 M×N 个自定义集成——为 AI 应用与外部能力的每一种可能组合创建一个（使用function-calling）。
-![](../../assets/images/image-11.png)
+![](/images/image-11.png)
 
 计算机领域的任何问题都可以通过增加一个间接的中间层来解决
 
 这里加一个mcp-host作为中间层，形成这样的结构
 
-![](../../assets/images/image-9.png)
+![](/images/image-9.png)
 
 有了mcp-host 就降低了对模型的要求，模型可以不支持function-calling，只需要有很强的逻辑执行能力就可以了，模型只需要理解 MCP 格式的 prompt/响应协议，并基于文本（或结构化 JSON）逻辑执行任务，不需要真正调用函数，而工具客户端的调用由MCPClient执行
 
@@ -153,11 +153,11 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http
 
 在下面的模型服务中添加自己的平台及api-key
 
-![](/assets/images/image-10.png)
+![](/images/image-10.png)
 
 进行mcp-server配置
 
-![](/assets/images/image-5.png)
+![](/images/image-5.png)
 
 导入下面的json
 
@@ -186,13 +186,13 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http
 
 在对话的设置中的助手设置开启模型的mcp服务
 
-![](/assets/images/image-8.png)
+![](/images/image-8.png)
 
 # 3. 测试
 
-![](/assets/images/image-7.png)
+![](/images/image-7.png)
 
-![](/assets/images/image-4.png)
+![](/images/image-4.png)
 
 # 4. 编写mcp-server
 
@@ -266,19 +266,19 @@ dify在新版本中对Streamable HTTP通信增加了对响应的headers中Conten
 
 添加了请求体的类型仍有报错如下
 
-![](/assets/images/image-6.png)
+![](/images/image-6.png)
 
 fastmcp的sdk导致的
 
-![](/assets/images/image-3.png)
+![](/images/image-3.png)
 
 将url改为/mcp/
 
-![](/assets/images/image-2.png)
+![](/images/image-2.png)
 
 进行测试
 
-![](/assets/images/image-1.png)
+![](/images/image-1.png)
 
 > 新版本的dify 添加了对mcp的resource 和template的支持（未测试）
 
@@ -314,7 +314,7 @@ npx -y supergateway     --stdio "npx -y @modelcontextprotocol/server-filesystem 
 
 只需要根据需要更改引号内的mcp 服务即可
 
-![](/assets/images/image.png)
+![](/images/image.png)
 
 sse的节点在`http://localhost:8000/sse`
 

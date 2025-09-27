@@ -24,8 +24,11 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
       }
-    }
+    },
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+    copyPublicDir: true
   },
+  publicDir: 'assets',
   server: {
     port: 3000,
     open: true
