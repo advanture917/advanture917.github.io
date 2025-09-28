@@ -266,19 +266,19 @@ dify在新版本中对Streamable HTTP通信增加了对响应的headers中Conten
 
 添加了请求体的类型仍有报错如下
 
-![](/images/image-6.png)
+![](/images/posts/image-6.png)
 
 fastmcp的sdk导致的
 
-![](/images/image-3.png)
+![](/images/posts/image-3.png)
 
 将url改为/mcp/
 
-![](/images/image-2.png)
+![](/images/posts/image-2.png)
 
 进行测试
 
-![](/images/image-1.png)
+![](/images/posts/image-1.png)
 
 > 新版本的dify 添加了对mcp的resource 和template的支持（未测试）
 
@@ -314,7 +314,7 @@ npx -y supergateway     --stdio "npx -y @modelcontextprotocol/server-filesystem 
 
 只需要根据需要更改引号内的mcp 服务即可
 
-![](/images/image.png)
+![](/images/posts/image.png)
 
 sse的节点在`http://localhost:8000/sse`
 
