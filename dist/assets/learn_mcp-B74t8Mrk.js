@@ -321,4 +321,4 @@ sse的节点在\`http://localhost:8000/sse\`\r
 之后进行内网穿透即可\r
 \r
 `;export{r as default};
-//# sourceMappingURL=lear_mcp-B74t8Mrk.js.map
+//# sourceMappingURL=learn_mcp-B74t8Mrk.js.map

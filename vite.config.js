@@ -28,7 +28,7 @@ export default defineConfig({
     assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
     copyPublicDir: true
   },
-  publicDir: 'assets',
+  publicDir: 'public',
   server: {
     port: 3000,
     open: true
