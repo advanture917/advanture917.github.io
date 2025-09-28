@@ -4,39 +4,6 @@ import { getAllPostsMeta, loadMarkdownPost } from '../utils/markdownLoader'
 
 // 默认的博客文章数据（作为后备）
 const defaultBlogPosts = [
-  {
-    slug: 'responsive-design-guide',
-    title: '响应式设计完全指南：从移动优先到现代CSS布局',
-    date: '2024-01-28',
-    excerpt: '深入探讨响应式设计的核心理念、实现技巧和最佳实践，帮助开发者构建真正适配各种设备的现代网站。',
-    content: '响应式设计是一种网页设计方法，旨在创建能够自动适应不同设备屏幕尺寸和分辨率的网站。无论用户使用手机、平板还是桌面设备访问，网站都能提供最佳的浏览体验。',
-    category: '前端开发',
-    tags: ['响应式设计', 'CSS', '移动优先', '布局', '前端'],
-    author: 'adventure',
-    readingTime: '8分钟'
-  },
-  {
-    slug: 'javascript-async-guide',
-    title: 'JavaScript异步编程深度解析：从回调到Async/Await',
-    date: '2024-01-22',
-    excerpt: '全面解析JavaScript异步编程的演进历程，从传统回调到Promise，再到现代的Async/Await语法。',
-    content: 'JavaScript是单线程语言，异步编程对于处理耗时操作（如网络请求、文件读写）至关重要。从回调函数到Promise，再到Async/Await，JavaScript异步编程不断演进。',
-    category: '前端开发',
-    tags: ['JavaScript', '异步编程', 'Promise', 'Async/Await', '回调'],
-    author: 'adventure',
-    readingTime: '10分钟'
-  },
-  {
-    slug: 'react-performance-optimization',
-    title: 'React性能优化实战指南：从理论到实践',
-    date: '2024-01-15',
-    excerpt: '深入探讨React应用性能优化的各种策略和技巧，包括组件优化、状态管理、代码分割等实用方法。',
-    content: 'React作为现代前端开发的主流框架，性能优化是构建高质量应用的关键。本文将从组件层面到应用层面，全面介绍React性能优化的最佳实践。',
-    category: '前端开发',
-    tags: ['React', '性能优化', '前端', '组件', '状态管理'],
-    author: 'adventure',
-    readingTime: '12分钟'
-  }
 ]
 
 // 初始状态
