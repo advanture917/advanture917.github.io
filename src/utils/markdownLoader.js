@@ -15,16 +15,27 @@ const markdownFiles = import.meta.glob('/src/posts/*.md', {
 
 // 转换Markdown中的图片路径以适应GitHub Pages
 function convertImagePaths(content) {
-  // 匹配Markdown图片语法 ![alt text](../../assets/images/image.png)
-  const imageRegex = /!\[([^\]]*)\]\((\.\.\/\.\.\/assets\/images\/[^)]+)\)/g
+  // 匹配Markdown图片语法 ![alt text](/images/posts/image.png) 或 ![alt text](../../assets/images/image.png)
+  const imageRegex = /!\[([^\]]*)\]\((\/images\/posts\/[^)]+)\)/g
+  const legacyImageRegex = /!\[([^\]]*)\]\((\.\.\/\.\.\/assets\/images\/[^)]+)\)/g
   
-  return content.replace(imageRegex, (match, altText, imagePath) => {
+  // 处理标准路径 /images/posts/
+  content = content.replace(imageRegex, (match, altText, imagePath) => {
+    // GitHub Pages个人站点使用根路径
+    const basePath = ''
+    return `![${altText}](${basePath}${imagePath})`
+  })
+  
+  // 处理遗留路径 ../../assets/images/
+  content = content.replace(legacyImageRegex, (match, altText, imagePath) => {
     // 提取图片文件名
     const imageName = imagePath.split('/').pop()
     // GitHub Pages个人站点使用根路径
     const basePath = ''
-    return `![${altText}](${basePath}/assets/images/${imageName})`
+    return `![${altText}](${basePath}/images/posts/${imageName})`
   })
+  
+  return content
 }
 
 // 读取Markdown文件并解析front matter

@@ -16,13 +16,13 @@ slug: "mcp-protocol-guide"\r
 MCP（Model Context Protocol）是一个协议规范，是对模型、client、server 三者之间如何通信的统一协议\r
 \r
 如果没有类似 MCP 的协议，我们将需要创建 M×N 个自定义集成——为 AI 应用与外部能力的每一种可能组合创建一个（使用function-calling）。\r
-![](/images/image-11.png)\r
+![](/images/posts/image-11.png)\r
 \r
 计算机领域的任何问题都可以通过增加一个间接的中间层来解决\r
 \r
 这里加一个mcp-host作为中间层，形成这样的结构\r
 \r
-![](/images/image-9.png)\r
+![](/images/posts/image-9.png)\r
 \r
 有了mcp-host 就降低了对模型的要求，模型可以不支持function-calling，只需要有很强的逻辑执行能力就可以了，模型只需要理解 MCP 格式的 prompt/响应协议，并基于文本（或结构化 JSON）逻辑执行任务，不需要真正调用函数，而工具客户端的调用由MCPClient执行\r
 \r
@@ -153,11 +153,11 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
 在下面的模型服务中添加自己的平台及api-key\r
 \r
-![](/images/image-10.png)\r
+![](/images/posts/image-10.png)\r
 \r
 进行mcp-server配置\r
 \r
-![](/images/image-5.png)\r
+![](/images/posts/image-5.png)\r
 \r
 导入下面的json\r
 \r
@@ -186,13 +186,13 @@ mcp目前提供了三种方式的服务 stdio、sse 、streamable-http\r
 \r
 在对话的设置中的助手设置开启模型的mcp服务\r
 \r
-![](/images/image-8.png)\r
+![](/images/posts/image-8.png)\r
 \r
 # 3. 测试\r
 \r
-![](/images/image-7.png)\r
+![](/images/posts/image-7.png)\r
 \r
-![](/images/image-4.png)\r
+![](/images/posts/image-4.png)\r
 \r
 # 4. 编写mcp-server\r
 \r
@@ -321,4 +321,4 @@ sse的节点在\`http://localhost:8000/sse\`\r
 之后进行内网穿透即可\r
 \r
 `;export{r as default};
-//# sourceMappingURL=learn_mcp-B74t8Mrk.js.map
+//# sourceMappingURL=learn_mcp-ELRgrluF.js.map

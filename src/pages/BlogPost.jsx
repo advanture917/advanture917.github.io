@@ -3,18 +3,14 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { getPostImagePath } from '../config/paths.js'
 
 // 自定义图片组件来处理GitHub Pages路径
 const CustomImage = ({ src, alt }) => {
-  // 如果已经是绝对路径或者是外部链接，直接使用
-  if (src.startsWith('http') || src.startsWith('/')) {
-    return <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-md" />
-  }
+  // 使用路径管理函数处理图片路径
+  const processedSrc = getPostImagePath(src)
   
-  // 处理相对路径 - GitHub Pages个人站点使用根路径
-  const basePath = ''
-  const processedSrc = src.startsWith('./') ? `${basePath}${src.slice(1)}` : `${basePath}/${src}`
-  
+  console.log('CustomImage processing:', { originalSrc: src, processedSrc })
   return <img src={processedSrc} alt={alt} className="max-w-full h-auto rounded-lg shadow-md" />
 }
 import { useBlogStore } from '../store/blogStore'
