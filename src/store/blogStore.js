@@ -14,6 +14,7 @@ const initialState = {
   tags: [], // 标签列表
   selectedCategory: '', // 选中的分类
   selectedTags: [], // 选中的标签
+  selectedTag: 'all', // 当前选中的单个标签（用于搜索页面）
   searchQuery: '', // 搜索查询
   viewMode: 'grid', // 视图模式
   loading: false, // 加载状态
@@ -98,7 +99,7 @@ export const useBlogStore = create(
 
       // 筛选文章
       filterPosts: () => {
-        const { posts, searchQuery, selectedCategory, selectedTags } = get()
+        const { posts, searchQuery, selectedCategory, selectedTags, selectedTag } = get()
         
         let filtered = posts
 
@@ -111,11 +112,13 @@ export const useBlogStore = create(
           )
         }
 
-        if (selectedCategory) {
+        if (selectedCategory && selectedCategory !== 'all') {
           filtered = filtered.filter(post => post.category === selectedCategory)
         }
 
-        if (selectedTags.length > 0) {
+        if (selectedTag && selectedTag !== 'all') {
+          filtered = filtered.filter(post => post.tags.includes(selectedTag))
+        } else if (selectedTags.length > 0) {
           filtered = filtered.filter(post => 
             selectedTags.some(tag => post.tags.includes(tag))
           )
@@ -192,6 +195,46 @@ export const useBlogStore = create(
       getTags: () => {
         const allTags = get().posts.flatMap(post => post.tags)
         return [...new Set(allTags)]
+      },
+
+      // 获取热门标签（用于搜索页面）
+      getPopularTags: () => {
+        const { posts } = get()
+        const tagCount = {}
+        
+        // 统计每个标签的出现次数
+        posts.forEach(post => {
+          post.tags.forEach(tag => {
+            tagCount[tag] = (tagCount[tag] || 0) + 1
+          })
+        })
+        
+        // 按使用频率排序并返回前12个标签
+        return Object.entries(tagCount)
+          .sort(([,a], [,b]) => b - a)
+          .slice(0, 12)
+          .map(([tag]) => tag)
+      },
+
+      // 搜索文章（用于搜索页面）
+      searchPosts: (query) => {
+        set({ searchQuery: query })
+        get().filterPosts()
+      },
+
+      // 按分类筛选（用于搜索页面）
+      filterByCategory: (category) => {
+        set({ selectedCategory: category })
+        get().filterPosts()
+      },
+
+      // 按标签筛选（用于搜索页面）
+      filterByTag: (tag) => {
+        set({ 
+          selectedTag: tag,
+          selectedTags: tag === 'all' ? [] : [tag] 
+        })
+        get().filterPosts()
       }
     }),
     {
@@ -200,6 +243,7 @@ export const useBlogStore = create(
         viewMode: state.viewMode,
         selectedCategory: state.selectedCategory,
         selectedTags: state.selectedTags,
+        selectedTag: state.selectedTag,
         searchQuery: state.searchQuery
       })
     }
